@@ -1,0 +1,34 @@
+{
+  "name": "bem-pug-sass",
+  "version": "1.0.0",
+  "description": "Starter template BEM-PUG-SASS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Shakhrom Mukumov",
+  "license": "MIT",
+  "devDependencies": {
+    "browser-sync": "^2.26.3",
+    "clean-css": "^4.2.1",
+    "del": "^3.0.0",
+    "file-system": "^2.2.2",
+    "gulp": "^4.0.0",
+    "gulp-autoprefixer": "^6.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-group-css-media-queries": "^1.2.2",
+    "gulp-imagemin": "^5.0.3",
+    "gulp-plumber": "^1.2.1",
+    "gulp-pug": "^4.0.1",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-uglifyjs": "^0.6.2",
+    "imagemin-pngquant": "^7.0.0",
+    "npm-check-updates": "^2.15.0",
+    "smart-grid": "^2.1.2"
+  },
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "jquery": "^3.3.1"
+  }
+}
