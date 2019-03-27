@@ -1,6 +1,6 @@
+/*Команда для запуска - node smartgrid.js*/
 var smartgrid = require('smart-grid');
-
-/* It's principal settings in smart grid project */
+/*Укажите параметры сетки, или оставьте по умолчанию*/
 var settings = {
     outputStyle: 'sass', /* less || scss || sass || styl */
     columns: 12, /* number of grid columns */
@@ -25,15 +25,6 @@ var settings = {
             width: '560px',
             fields: '5px'
         }
-        /* 
-        We can create any quantity of break points.
-
-        some_name: {
-            width: 'Npx',
-            fields: 'N(px|%|rem)',
-            offset: 'N(px|%|rem)'
-        }
-        */
     }
 };
 
