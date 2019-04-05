@@ -13,6 +13,7 @@ const imagemin		 = require('gulp-imagemin');
 const pngquant		 = require('imagemin-pngquant');
 const del		 			 = require('del');
 const plumber 		 = require('gulp-plumber');
+const uglify       = require('gulp-uglify');
 
 
 var paths = {
@@ -26,12 +27,14 @@ var paths = {
     watch: ['./src/pages/*.pug', './src/templates/*.pug', './src/blocks/**/*.pug']
   },
   css: {
+    libsCSS: ['./src/styles/libs/**/*.css' ],
     src: ['./src/styles/style.sass' ],
     dest: './build/css',
     watch: ['./src/blocks/**/*.sass', './src/styles/**/*.sass', './src/styles/*.sass']
   },
   js: {
-    src: ['./node_modules/jquery/dist/jquery.min.js', './src/libs/*.js', './src/blocks/**/*.js'],
+    libsJS: ['./node_modules/jquery/dist/jquery.min.js', './src/libs/*.js'],
+    src: ['./src/blocks/**/*.js'],
     dest: './build/js',
     watch: './src/blocks/**/*.js',
     watchPlugins: './src/scripts/libs/*.js'
@@ -78,10 +81,23 @@ gulp.task('styles', function () {
     }));
 });
 
+gulp.task('libsCSS', function () {
+  return gulp.src(paths.css.libsCSS)
+    .pipe(plumber())
+    .pipe(gulp.dest(paths.css.dest));
+});
+
 gulp.task('scripts', function () {
   return gulp.src(paths.js.src)
     .pipe(plumber())
     .pipe(concat('scripts.js'))
+    .pipe(gulp.dest(paths.js.dest));
+});
+
+gulp.task('libsJS', function () {
+  return gulp.src(paths.js.libsJS)
+    .pipe(plumber())
+    .pipe(uglify())
     .pipe(gulp.dest(paths.js.dest));
 });
 
@@ -147,7 +163,9 @@ gulp.task('build', gulp.series(
   'clean',
   'templates',
   'styles',
+  'libsCSS',
   'scripts',
+  'libsJS',
   'images',
   'fonts'
 ));

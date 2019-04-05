@@ -22,6 +22,7 @@
     "gulp-pug": "^4.0.1",
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.0.2",
+    "gulp-uglify": "^3.0.2",
     "gulp-uglifyjs": "^0.6.2",
     "imagemin-pngquant": "^7.0.0",
     "npm-check-updates": "^2.15.0",
