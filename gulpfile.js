@@ -5,12 +5,12 @@ const pug		 			 = require('gulp-pug');
 const cleanCss		 = require('clean-css');
 const sass		 		 = require('gulp-sass');
 const groupMedia	 = require('gulp-group-css-media-queries');
-const autoprefixer = require('gulp-autoprefixer');
+const autoprefixer = require('autoprefixer');
+const postcss      = require('gulp-postcss');
 const concat 			 = require('gulp-concat');
 const uglifyjs 		 = require('gulp-uglifyjs');
 const rename			 = require('gulp-rename');
 const imagemin		 = require('gulp-imagemin');
-const pngquant		 = require('imagemin-pngquant');
 const del		 			 = require('del');
 const plumber 		 = require('gulp-plumber');
 const uglify       = require('gulp-uglify');
@@ -72,9 +72,8 @@ gulp.task('styles', function () {
     .pipe(plumber())
     .pipe(sass())
     .pipe(groupMedia())
-    .pipe(autoprefixer({
-      browsers: ['last 20 versions']
-    }))
+    // .pipe(autoprefixer())
+    .pipe(postcss([ autoprefixer() ]))
     .pipe(gulp.dest(paths.css.dest))
     .pipe(browserSync.reload({
       stream: true
