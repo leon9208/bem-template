@@ -72,7 +72,6 @@ gulp.task('styles', function () {
     .pipe(plumber())
     .pipe(sass())
     .pipe(groupMedia())
-    // .pipe(autoprefixer())
     .pipe(postcss([ autoprefixer() ]))
     .pipe(gulp.dest(paths.css.dest))
     .pipe(browserSync.reload({
@@ -137,17 +136,12 @@ gulp.task('server', function () {
         fs.appendFileSync(allBlocks+'/'+dirs[i]+'/'+dirs[i]+'.js', '//'+dirs[i]);
         fs.appendFileSync(allBlocks+'/'+dirs[i]+'/'+dirs[i]+'.sass', '//'+dirs[i]);
       }
-      var folders = ["img", "icons"];
       try {
-        for(a = 0; a < folders.length; a++){
-         fs.statSync(allBlocks+'/'+dirs[i]+'/'+folders[a]+'');
-        }
+        fs.statSync(allBlocks+'/'+dirs[i]+'/img');
       }
       catch (err) {
         if (err.code === 'ENOENT') {
-          for(a = 0; a < folders.length; a++){
-            fs.mkdirSync(allBlocks+'/'+dirs[i]+'/'+folders[a]+'');
-           }
+          fs.mkdirSync(allBlocks+'/'+dirs[i]+'/img');
         }
       }
       try {
@@ -156,7 +150,6 @@ gulp.task('server', function () {
       catch (err) {
         if (err.code === 'ENOENT') {
           fs.mkdirSync(allBlocks+'/'+dirs[i]+'/icons');
-          console.log('Папка icons добавлена в директорию' + ' — ' + dirs[i]);
         }
       }
     }
