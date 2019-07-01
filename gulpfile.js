@@ -130,20 +130,33 @@ gulp.task('server', function () {
 
   const allBlocks = paths.html.blocks;
   gulp.watch(allBlocks).on('addDir', function() {
-    let dirs = fs.readdirSync(allBlocks);
+    var dirs = fs.readdirSync(allBlocks);
     for(i = 0; i < dirs.length;i++){
       if(fs.existsSync(allBlocks+'/'+dirs[i]+'/'+dirs[i]+'.pug') === false && fs.existsSync(allBlocks+'/'+dirs[i]+'/'+dirs[i]+'.sass') === false && fs.existsSync(allBlocks+'/'+dirs[i]+'/'+dirs[i]+'.js') === false){
         fs.appendFileSync(allBlocks+'/'+dirs[i]+'/'+dirs[i]+'.pug', '//'+dirs[i]);
         fs.appendFileSync(allBlocks+'/'+dirs[i]+'/'+dirs[i]+'.js', '//'+dirs[i]);
         fs.appendFileSync(allBlocks+'/'+dirs[i]+'/'+dirs[i]+'.sass', '//'+dirs[i]);
       }
+      var folders = ["img", "icons"];
       try {
-        fs.statSync(allBlocks+'/'+dirs[i]+'/img');
+        for(a = 0; a < folders.length; a++){
+         fs.statSync(allBlocks+'/'+dirs[i]+'/'+folders[a]+'');
+        }
       }
       catch (err) {
         if (err.code === 'ENOENT') {
-          fs.mkdirSync(allBlocks+'/'+dirs[i]+'/img');
-          console.log('Папка img добавлена в директорию' + ' — ' + dirs[i]);
+          for(a = 0; a < folders.length; a++){
+            fs.mkdirSync(allBlocks+'/'+dirs[i]+'/'+folders[a]+'');
+           }
+        }
+      }
+      try {
+        fs.statSync(allBlocks+'/'+dirs[i]+'/icons');
+      }
+      catch (err) {
+        if (err.code === 'ENOENT') {
+          fs.mkdirSync(allBlocks+'/'+dirs[i]+'/icons');
+          console.log('Папка icons добавлена в директорию' + ' — ' + dirs[i]);
         }
       }
     }
