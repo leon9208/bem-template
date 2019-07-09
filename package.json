@@ -11,10 +11,12 @@
   "devDependencies": {
     "browser-sync": "^2.26.7",
     "browserslist": "^4.6.3",
-    "clean-css": "^4.2.1",
-    "del": "^4.1.1",
+    "cheerio": "^1.0.0-rc.3",
+    "del": "^5.0.0",
     "file-system": "^2.2.2",
     "gulp": "^4.0.2",
+    "gulp-cheerio-clean-svg": "github:hiswe/gulp-cheerio-clean-svg",
+    "gulp-clean-css": "^4.2.0",
     "gulp-concat": "^2.6.1",
     "gulp-group-css-media-queries": "^1.2.2",
     "gulp-imagemin": "^6.0.0",
@@ -23,14 +25,17 @@
     "gulp-pug": "^4.0.1",
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.0.2",
+    "gulp-svg-sprite": "^1.5.0",
+    "gulp-svgmin": "^2.2.0",
     "gulp-uglify": "^3.0.2",
     "gulp-uglifyjs": "^0.6.2",
-    "npm-check-updates": "^3.1.12",
+    "npm-check-updates": "^3.1.13",
+    "replace": "^1.1.0",
     "smart-grid": "^2.1.2"
   },
   "dependencies": {
-    "jquery": "^3.4.1",
     "autoprefixer": "^9.6.0",
+    "jquery": "^3.4.1",
     "normalize.css": "^8.0.1"
   },
   "browserslist": [

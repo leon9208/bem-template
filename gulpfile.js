@@ -2,7 +2,7 @@ const gulp		     = require('gulp');
 const fs           = require('fs');
 const browserSync  = require('browser-sync');
 const pug		 			 = require('gulp-pug');
-const cleanCss		 = require('clean-css');
+const cleanCss		 = require('gulp-clean-css');
 const sass		 		 = require('gulp-sass');
 const groupMedia	 = require('gulp-group-css-media-queries');
 const autoprefixer = require('autoprefixer');
@@ -11,8 +11,12 @@ const concat 			 = require('gulp-concat');
 const uglifyjs 		 = require('gulp-uglifyjs');
 const rename			 = require('gulp-rename');
 const imagemin		 = require('gulp-imagemin');
+const svgSprite    = require('gulp-svg-sprite');
+const svgmin       = require('gulp-svgmin');
 const del		 			 = require('del');
 const plumber 		 = require('gulp-plumber');
+const cheerio 		 = require('cheerio');
+const replace 		 = require('replace');
 const uglify       = require('gulp-uglify');
 
 
@@ -27,7 +31,10 @@ var paths = {
     watch: ['./src/pages/*.pug', './src/templates/*.pug', './src/blocks/**/*.pug']
   },
   css: {
-    libsCSS: ['./src/styles/libs/**/*.css' ],
+    libsCSS: [
+      './src/styles/libs/**/*.css',
+      './node_modules/normalize.css/normalize.css',
+    ],
     src: ['./src/styles/style.sass' ],
     dest: './build/css',
     watch: ['./src/blocks/**/*.sass', './src/styles/**/*.sass', './src/styles/*.sass']
@@ -43,6 +50,11 @@ var paths = {
     src: './src/blocks/**/img/*',
     dest: './build/img',
     watch: ['./src/blocks/**/img/*']
+  },
+  icons: {
+    src: './src/blocks/**/icons/*',
+    dest: './build/img',
+    watch: ['./src/blocks/**/icons/*']
   },
   fonts: {
     src: './src/fonts/**/*',
@@ -82,6 +94,9 @@ gulp.task('styles', function () {
 gulp.task('libsCSS', function () {
   return gulp.src(paths.css.libsCSS)
     .pipe(plumber())
+    .pipe(cleanCss({
+      level: 2
+    }))
     .pipe(gulp.dest(paths.css.dest));
 });
 
@@ -105,6 +120,24 @@ gulp.task('images', function () {
     .pipe(imagemin())
     .pipe(rename({
       dirname: ''
+    }))
+    .pipe(gulp.dest(paths.images.dest));
+});
+
+gulp.task('icons', function () {
+  return gulp.src(paths.icons.src)
+    .pipe(plumber())
+    .pipe(svgmin({
+      js2svg: {
+        pretty: true
+      }
+    }))
+    .pipe(svgSprite({
+      mode: {
+        symbol: {
+            sprite: "../sprite.svg"  //sprite file name
+        }
+      }
     }))
     .pipe(gulp.dest(paths.images.dest));
 });
@@ -160,6 +193,7 @@ gulp.task('server', function () {
   gulp.watch(paths.js.watch, gulp.parallel('scripts'));
   gulp.watch(paths.js.watchPlugins, gulp.parallel('scripts'));
   gulp.watch(paths.images.watch, gulp.parallel('images'));
+  gulp.watch(paths.icons.watch, gulp.parallel('icons'));
   gulp.watch(paths.fonts.watch, gulp.parallel('fonts'));
 });
 
@@ -172,6 +206,7 @@ gulp.task('build', gulp.series(
   'scripts',
   'libsJS',
   'images',
+  'icons',
   'fonts'
 ));
 
