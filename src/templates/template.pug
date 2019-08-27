@@ -3,8 +3,10 @@
 - var email = 'info@mysite.ru';
 - var emailLink = 'mailto:'+email+'';
 doctype html
-html(lang='ru')
+html(lang='ru', class="no-js")
 	include head
 	body
-		block content
-		script(src="js/scripts.js?version=1")
+		main.main
+			block content
+		script(src="js/jquery.min.js")
+		script(src="js/scripts.js")

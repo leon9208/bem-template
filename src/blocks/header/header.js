@@ -1,8 +1,8 @@
-$(window).scroll(function(){
-    if ($(window).scrollTop() >= 800) {
-        $('.header, .hero__top-content').addClass('fixed');
-    }
-    else {
-        $('.header, .hero__top-content').removeClass('fixed');
-    }
-});
+//fix hover element on mobile
+(function() {
+    $('*').on('touchstart', function () {
+        $(this).trigger('hover');
+    }).on('touchend', function () {
+        $(this).trigger('hover');
+    });
+})();
