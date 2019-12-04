@@ -31,6 +31,7 @@
     "gulp-uglify": "^3.0.2",
     "gulp-uglify-es": "^2.0.0",
     "gulp-uglifyjs": "^0.6.2",
+    "gulp-webp": "^4.0.1",
     "imagemin-webp": "^5.1.0",
     "npm-check-updates": "^3.2.2",
     "replace": "^1.1.1",

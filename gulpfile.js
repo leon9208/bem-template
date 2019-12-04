@@ -12,6 +12,7 @@ const concat 			 = require('gulp-concat');
 const uglify       = require('gulp-uglify-es').default;
 const rename			 = require('gulp-rename');
 const imagemin		 = require('gulp-imagemin');
+const webp    		 = require('gulp-webp');
 const svgSprite    = require('gulp-svg-sprite');
 const svgmin       = require('gulp-svgmin');
 const del		 			 = require('del');
@@ -130,6 +131,16 @@ gulp.task('images', function () {
     .pipe(gulp.dest(paths.images.dest));
 });
 
+gulp.task('webp', function () {
+  return gulp.src(paths.images.src)
+    .pipe(plumber())
+    .pipe(webp())
+    .pipe(rename({
+      dirname: ''
+    }))
+    .pipe(gulp.dest(paths.images.dest));
+});
+
 gulp.task('icons', function () {
   return gulp.src(paths.icons.src)
     .pipe(plumber())
@@ -199,6 +210,7 @@ gulp.task('server', function () {
   gulp.watch(paths.js.watch, gulp.parallel('scripts'));
   gulp.watch(paths.js.watchPlugins, gulp.parallel('scripts'));
   gulp.watch(paths.images.watch, gulp.parallel('images'));
+  gulp.watch(paths.images.watch, gulp.parallel('webp'));
   gulp.watch(paths.icons.watch, gulp.parallel('icons'));
   gulp.watch(paths.fonts.watch, gulp.parallel('fonts'));
 });
@@ -212,6 +224,7 @@ gulp.task('build', gulp.series(
   'scripts',
   'libsJS',
   'images',
+  'webp',
   'icons',
   'fonts'
 ));
