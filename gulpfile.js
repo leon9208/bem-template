@@ -7,8 +7,9 @@ const sass		 		 = require('gulp-sass');
 const groupMedia	 = require('gulp-group-css-media-queries');
 const autoprefixer = require('autoprefixer');
 const postcss      = require('gulp-postcss');
+const purgecss     = require('gulp-purgecss')
 const concat 			 = require('gulp-concat');
-const uglifyjs 		 = require('gulp-uglifyjs');
+const uglify       = require('gulp-uglify-es').default;
 const rename			 = require('gulp-rename');
 const imagemin		 = require('gulp-imagemin');
 const svgSprite    = require('gulp-svg-sprite');
@@ -17,7 +18,6 @@ const del		 			 = require('del');
 const plumber 		 = require('gulp-plumber');
 const cheerio 		 = require('cheerio');
 const replace 		 = require('replace');
-const uglify       = require('gulp-uglify');
 
 
 var paths = {
@@ -85,6 +85,12 @@ gulp.task('styles', function () {
     .pipe(sass())
     .pipe(groupMedia())
     .pipe(postcss([ autoprefixer() ]))
+    .pipe(
+      purgecss({
+        content: ['./build/*.html'],
+        whitelistPatterns: [/$js-/]
+      })
+    )
     .pipe(gulp.dest(paths.css.dest))
     .pipe(browserSync.reload({
       stream: true
