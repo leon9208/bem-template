@@ -14,3 +14,9 @@
 	margin-right: $n
 	&:last-child
 		margin-right: 0px
+=ie()
+	@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)
+		@content
+=ios()
+	@supports (-webkit-appearance:none)
+		@content
