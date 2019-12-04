@@ -1,0 +1,12 @@
+mixin picJpg(image, altTag)
+  picture
+    source(srcset="img/"+image+".webp" type="image/webp")
+    source(srcset="img/"+image+".jpg" type="image/jpeg")
+    img(src="img/"+image+".jpg" alt=altTag)
+
+mixin picPng(image, altTag)
+  picture
+    source(srcset="img/"+image+".webp" type="image/webp")
+    source(srcset="img/"+image+".png" type="image/png")
+    img(src="img/"+image+".png" alt=altTag)
+    
