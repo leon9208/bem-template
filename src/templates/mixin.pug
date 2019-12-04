@@ -9,4 +9,24 @@ mixin picPng(image, altTag)
     source(srcset="img/"+image+".webp" type="image/webp")
     source(srcset="img/"+image+".png" type="image/png")
     img(src="img/"+image+".png" alt=altTag)
+
+mixin picMediaPng(image, altTag)
+  picture
+    source(srcset="img/"+image+"-small.webp" type="image/webp" media="(max-width: 560px)")
+    source(srcset="img/"+image+"-medium.webp" type="image/webp" media="(max-width: 780px)")
+    source(srcset="img/"+image+"-large.webp" type="image/webp" media="(min-width: 780px)")
+    source(srcset="img/"+image+"-small.png" type="image/png" media="(max-width: 560px)")
+    source(srcset="img/"+image+"-medium.png" type="image/png" media="(max-width: 780px)")
+    source(srcset="img/"+image+"-large.png" type="image/png" media="(min-width: 780px)")
+    img(src="img/"+image+".png" alt=altTag)
+
+mixin picMediaJpg(image, altTag)
+  picture
+    source(srcset="img/"+image+"-small.webp" type="image/webp" media="(max-width: 560px)")
+    source(srcset="img/"+image+"-medium.webp" type="image/webp" media="(max-width: 780px)")
+    source(srcset="img/"+image+"-large.webp" type="image/webp" media="(min-width: 780px)")
+    source(srcset="img/"+image+"-small.jpg" type="image/jpg" media="(max-width: 560px)")
+    source(srcset="img/"+image+"-medium.jpg" type="image/jpg" media="(max-width: 780px)")
+    source(srcset="img/"+image+"-large.jpg" type="image/jpg" media="(min-width: 780px)")
+    img(src="img/"+image+".jpg" alt=altTag)
     
