@@ -7,9 +7,10 @@ const sass		 		 = require('gulp-sass');
 const groupMedia	 = require('gulp-group-css-media-queries');
 const autoprefixer = require('autoprefixer');
 const postcss      = require('gulp-postcss');
-const purgecss     = require('gulp-purgecss')
+const purgecss     = require('gulp-purgecss');
 const concat 			 = require('gulp-concat');
 const uglify       = require('gulp-uglify-es').default;
+const babel        = require("gulp-babel")
 const rename			 = require('gulp-rename');
 const imagemin		 = require('gulp-imagemin');
 const webp    		 = require('gulp-webp');
@@ -110,6 +111,7 @@ gulp.task('libsCSS', function () {
 gulp.task('scripts', function () {
   return gulp.src(paths.js.src)
     .pipe(plumber())
+    .pipe(babel())
     .pipe(concat('scripts.js'))
     .pipe(gulp.dest(paths.js.dest));
 });
