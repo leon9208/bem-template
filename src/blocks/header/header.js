@@ -1,8 +1,7 @@
 //fix hover element on mobile
-(function() {
-    $('*').on('touchstart', function () {
-        $(this).trigger('hover');
-    }).on('touchend', function () {
-        $(this).trigger('hover');
-    });
-})();
+document
+  .querySelectorAll('*')
+  .forEach((el) =>{
+    el.addEventListener('touchstart', () => this.mouseover())
+    el.addEventListener('touchcancel', () => this.mouseover())
+  })
