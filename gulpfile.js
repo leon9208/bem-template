@@ -43,7 +43,10 @@ var paths = {
     watch: ['./src/blocks/**/*.sass', './src/styles/**/*.sass', './src/styles/*.sass']
   },
   js: {
-    libsJS: ['./node_modules/jquery/dist/jquery.min.js', './src/libs/*.js'],
+    libsJS: [
+      // './node_modules/jquery/dist/jquery.min.js', 
+      './node_modules/svgxuse/svgxuse.min.js', 
+      './src/libs/*.js'],
     src: ['./src/blocks/**/*.js'],
     dest: './build/js',
     watch: './src/blocks/**/*.js',

@@ -44,7 +44,8 @@
   "dependencies": {
     "autoprefixer": "^9.7.3",
     "jquery": "^3.4.1",
-    "normalize.css": "^8.0.1"
+    "normalize.css": "^8.0.1",
+    "svgxuse": "^1.2.6"
   },
   "browserslist": [
     "last 20 versions",
