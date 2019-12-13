@@ -90,7 +90,7 @@ gulp.task('styles', function () {
     .pipe(
       purgecss({
         content: ['./build/*.html'],
-        whitelistPatterns: [/$js-/]
+        whitelistPatterns: [/js$/]
       })
     )
     .pipe(gulp.dest(paths.css.dest))
