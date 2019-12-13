@@ -29,4 +29,8 @@ mixin picMediaJpg(image, altTag)
     source(srcset="img/"+image+"-medium.jpg" type="image/jpg" media="(max-width: 780px)")
     source(srcset="img/"+image+"-large.jpg" type="image/jpg" media="(min-width: 780px)")
     img(src="img/"+image+".jpg" alt=altTag)
-    
+
+mixin xlink(svg)
+  i(class="icon icon-"+svg+"")
+    svg
+      use(xlink:href="img/sprite.svg#icon-"+svg+"")
