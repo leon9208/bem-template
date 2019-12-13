@@ -1,8 +1,11 @@
 include mixin.pug
-- var phone = '+7 800 555-55-55';
-- var phoneLink = 'tel:'+phone.replace(/[-/ /]/g,'');
-- var email = 'info@mysite.ru';
-- var emailLink = 'mailto:'+email+'';
+block vars
+	- var title = 'Title';
+	- var description = 'Description';
+	- var phone = '+7 800 555-55-55';
+	- var phoneLink = 'tel:'+phone.replace(/[-/ /]/g,'');
+	- var email = 'info@mysite.ru';
+	- var emailLink = 'mailto:'+email+'';
 doctype html
 html(lang='ru', class="no-js")
 	include head
