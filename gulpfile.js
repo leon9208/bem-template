@@ -14,11 +14,12 @@ const babel        = require("gulp-babel")
 const rename			 = require('gulp-rename');
 const imagemin		 = require('gulp-imagemin');
 const webp    		 = require('gulp-webp');
-const svgSprite    = require('gulp-svg-sprite');
+const svgSprite    = require('gulp-svg-sprites');
 const svgmin       = require('gulp-svgmin');
+const cleanSvg     = require('gulp-cheerio-clean-svg');
 const del		 			 = require('del');
 const plumber 		 = require('gulp-plumber');
-const cheerio 		 = require('cheerio');
+const cheerio 		 = require('gulp-cheerio');
 const replace 		 = require('replace');
 
 
@@ -151,14 +152,26 @@ gulp.task('icons', function () {
         pretty: true
       }
     }))
+    .pipe(cheerio(cleanSvg({
+      removeSketchType: true,
+      removeEmptyGroup: true,
+      removeEmptyDefs: true,
+      removeEmptyLines: true,
+      removeComments: true,
+      tags: ["title", "desc"],
+      attributes: ["id", "style", "fill*", "clip*", "stroke*", "mask", "opacity", "width", "height", "transform"]
+    })))
+    // .pipe(replace('&gt;', '>'))
     .pipe(svgSprite({
-      mode: {
-        symbol: {
-            sprite: "../sprite.svg"  //sprite file name
-        }
+      mode: "symbols",
+      preview: false,
+      selector: "icon-%f",
+      svg: {
+        symbols: 'sprite.svg'
       }
-    }))
-    .pipe(gulp.dest(paths.images.dest));
+    }
+    ))
+    .pipe(gulp.dest('./build/img/'));
 });
 
 gulp.task('fonts', function () {
