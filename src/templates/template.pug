@@ -2,6 +2,7 @@ include mixin.pug
 block vars
 	- var title = 'Title';
 	- var description = 'Description';
+	- var company = 'Company name';
 	- var phone = '+7 800 555-55-55';
 	- var phoneLink = 'tel:'+phone.replace(/[-/ /]/g,'');
 	- var email = 'info@mysite.ru';
@@ -12,5 +13,4 @@ html(lang='ru', class="no-js")
 	body
 		main.main
 			block content
-		script(src="js/jquery.min.js")
 		script(src="js/scripts.js")
