@@ -1,26 +1,26 @@
-const gulp		     = require('gulp');
+const gulp         = require('gulp');
 const fs           = require('fs');
 const browserSync  = require('browser-sync');
-const pug		 			 = require('gulp-pug');
-const cleanCss		 = require('gulp-clean-css');
-const sass		 		 = require('gulp-sass');
-const groupMedia	 = require('gulp-group-css-media-queries');
+const pug          = require('gulp-pug');
+const cleanCss     = require('gulp-clean-css');
+const sass         = require('gulp-sass');
+const groupMedia   = require('gulp-group-css-media-queries');
 const autoprefixer = require('autoprefixer');
 const postcss      = require('gulp-postcss');
 const purgecss     = require('gulp-purgecss');
-const concat 			 = require('gulp-concat');
+const concat       = require('gulp-concat');
 const uglify       = require('gulp-uglify-es').default;
-const babel        = require("gulp-babel")
-const rename			 = require('gulp-rename');
-const imagemin		 = require('gulp-imagemin');
-const webp    		 = require('gulp-webp');
+const babel        = require("gulp-babel");
+const rename       = require('gulp-rename');
+const imagemin     = require('gulp-imagemin');
+const webp         = require('gulp-webp');
 const svgSprite    = require('gulp-svg-sprites');
 const svgmin       = require('gulp-svgmin');
 const cleanSvg     = require('gulp-cheerio-clean-svg');
-const del		 			 = require('del');
-const plumber 		 = require('gulp-plumber');
-const cheerio 		 = require('gulp-cheerio');
-const replace 		 = require('replace');
+const del          = require('del');
+const plumber      = require('gulp-plumber');
+const cheerio      = require('gulp-cheerio');
+const replace      = require('replace');
 
 
 var paths = {
@@ -115,8 +115,8 @@ gulp.task('libsCSS', function () {
 gulp.task('scripts', function () {
   return gulp.src(paths.js.src)
     .pipe(plumber())
-    .pipe(babel())
     .pipe(concat('scripts.js'))
+    .pipe(babel())
     .pipe(gulp.dest(paths.js.dest));
 });
 
