@@ -11,6 +11,14 @@ doctype html
 html(lang='ru', class="no-js")
 	include head
 	body
+		//Header
+		include ../blocks/header/header.pug
+		//End Header
+		//Main
 		main.main
 			block content
+		//End Main
+		//footer
+		include ../blocks/footer/footer.pug
+		//End footer
 		script(src="js/scripts.js")
