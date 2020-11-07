@@ -36,7 +36,9 @@ var paths = {
   css: {
     libsCSS: [
       './src/styles/libs/**/*.css',
-      './node_modules/normalize.css/normalize.css',
+      './node_modules/magnific-popup/dist/magnific-popup.css',
+      './node_modules/slick-carousel/slick/slick.css',
+      // './node_modules/normalize.css/normalize.css',
     ],
     src: ['./src/styles/style.sass' ],
     dest: './build/css',
@@ -44,8 +46,10 @@ var paths = {
   },
   js: {
     libsJS: [
-      // './node_modules/jquery/dist/jquery.min.js', 
-      './node_modules/svgxuse/svgxuse.min.js', 
+      './node_modules/jquery/dist/jquery.min.js', 
+      './node_modules/magnific-popup/dist/jquery.magnific-popup.min.js', 
+      './node_modules/slick-carousel/slick/slick.min.js', 
+      // './node_modules/svgxuse/svgxuse.min.js', 
       './src/libs/*.js'],
     src: ['./src/blocks/**/*.js'],
     dest: './build/js',
@@ -91,12 +95,12 @@ gulp.task('styles', function () {
     .pipe(sass())
     .pipe(groupMedia())
     .pipe(postcss([ autoprefixer() ]))
-    .pipe(
-      purgecss({
-        content: ['./build/*.html'],
-        whitelistPatterns: [/js$/]
-      })
-    )
+    // .pipe(
+    //   purgecss({
+    //     content: ['./build/*.html'],
+    //     whitelistPatterns: [/js$/]
+    //   })
+    // )
     .pipe(gulp.dest(paths.css.dest))
     .pipe(browserSync.reload({
       stream: true
@@ -242,8 +246,8 @@ gulp.task('build', gulp.series(
   'scripts',
   'libsJS',
   'images',
-  'webp',
-  'icons',
+  // 'webp',
+  // 'icons',
   'fonts'
 ));
 
