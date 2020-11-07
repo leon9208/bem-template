@@ -49,6 +49,7 @@ var paths = {
       './node_modules/jquery/dist/jquery.min.js', 
       './node_modules/magnific-popup/dist/jquery.magnific-popup.min.js', 
       './node_modules/slick-carousel/slick/slick.min.js', 
+      './node_modules/jquery.maskedinput/src/jquery.maskedinput.js', 
       // './node_modules/svgxuse/svgxuse.min.js', 
       './src/libs/*.js'],
     src: ['./src/blocks/**/*.js'],
