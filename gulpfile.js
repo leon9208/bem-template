@@ -36,8 +36,8 @@ var paths = {
   css: {
     libsCSS: [
       './src/styles/libs/**/*.css',
-      './node_modules/magnific-popup/dist/magnific-popup.css',
-      './node_modules/slick-carousel/slick/slick.css',
+      // './node_modules/magnific-popup/dist/magnific-popup.css',
+      // './node_modules/slick-carousel/slick/slick.css',
       // './node_modules/normalize.css/normalize.css',
     ],
     src: ['./src/styles/style.sass' ],
@@ -111,9 +111,14 @@ gulp.task('styles', function () {
 gulp.task('libsCSS', function () {
   return gulp.src(paths.css.libsCSS)
     .pipe(plumber())
+    .pipe(groupMedia())
+    .pipe(postcss([ autoprefixer() ]))
+    .pipe(concat('new.css'))
     .pipe(cleanCss({
-      level: 2
-    }))
+      level: 2,
+      format: 'beautify'
+    }
+    ))
     .pipe(gulp.dest(paths.css.dest));
 });
 
@@ -122,14 +127,20 @@ gulp.task('scripts', function () {
     .pipe(plumber())
     .pipe(concat('scripts.js'))
     .pipe(babel())
-    .pipe(gulp.dest(paths.js.dest));
+    .pipe(gulp.dest(paths.js.dest))
+    .pipe(browserSync.reload({
+      stream: true
+    }));
 });
 
 gulp.task('libsJS', function () {
   return gulp.src(paths.js.libsJS)
     .pipe(plumber())
     .pipe(uglify())
-    .pipe(gulp.dest(paths.js.dest));
+    .pipe(gulp.dest(paths.js.dest))
+    .pipe(browserSync.reload({
+      stream: true
+    }));
 });
 
 gulp.task('images', function () {
